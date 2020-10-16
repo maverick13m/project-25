@@ -12,9 +12,12 @@ function preload(){
 }
 
 function setup() {
+  engine =Engine.create()
+  world = engine.world
 	createCanvas(800, 800);
-	ground = new Ground(600,height,width,20)
-	paperObject = new paper(200,790,20,20)
+	ground = new Ground(400,620,width,20)
+  paperObject = new paper(100,90,50)
+  dustbin = new Dustbin(640,510)
 	Engine.run(engine);
   
 }
@@ -23,19 +26,15 @@ function setup() {
 function draw() {
   rectMode(CENTER);
   Engine.update(engine)
-  background(0);
+  background(255);
   ground.display();
   paperObject.display();
-  drawSprites();
- keypress();
+  dustbin.display();
 }
 
-function keypress(){
+function keyPressed(){
     if (keyCode == UP_ARROW) {
-        Matter.Body.applyForce(paperObject.body,paperObject.body.position,{x:85,y:-85});
-
+        Matter.Body.applyForce(paperObject.body,paperObject.body.position,{x:85,y:-185});
 	}
-
-
 }
 
